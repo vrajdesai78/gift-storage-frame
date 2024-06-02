@@ -1,8 +1,7 @@
-import { abi, baseSepoliaAddress, publicClient } from "@/constants";
+import { abi, baseSepoliaAddress } from "@/constants";
 import { TransactionTargetResponse, getFrameMessage } from "frames.js";
 import { NextRequest, NextResponse } from "next/server";
-import { Abi, encodeFunctionData, parseEther, parseUnits } from "viem";
-import { privateKeyToAccount } from "viem/accounts";
+import { Abi, encodeFunctionData, parseUnits } from "viem";
 import { baseSepolia } from "viem/chains";
 
 export async function POST(
@@ -32,18 +31,6 @@ export async function POST(
     functionName: "createGiftCard",
     args: [address, Number(amt), type === "usdc" ? false : true],
   });
-
-  const account = privateKeyToAccount(process.env.PRIVATE_KEY as `0x${string}`);
-
-  const { result } = await publicClient.simulateContract({
-    address: baseSepoliaAddress,
-    abi: abi,
-    functionName: "createGiftCard",
-    args: [address, Number(amt), false],
-    account,
-  });
-
-  console.log("result", result);
 
   if (type === "eth") {
     return NextResponse.json({
