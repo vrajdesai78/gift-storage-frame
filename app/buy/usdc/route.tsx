@@ -22,14 +22,7 @@ const handleRequest = frames(async (ctx) => {
 
   return {
     image: (
-      <div
-        tw='flex flex-col h-full w-full items-center justify-center text-6xl font-bold text-slate-200'
-        style={{
-          background: `url('${process.env.HOST_URL}/bg.png')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <div tw='flex flex-col h-full w-full items-center justify-center text-6xl font-bold text-slate-200 bg-blue-900'>
         Buying Filecoin Storage for
         <div tw='text-4xl mt-6 font-bold text-slate-200'>{name}</div>
       </div>

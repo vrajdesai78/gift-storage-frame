@@ -1,9 +1,9 @@
 import { createPublicClient, http } from "viem";
-import { baseSepolia } from "viem/chains";
+import { base, baseSepolia } from "viem/chains";
 
-export const baseSepoliaAddress = "0x6da9eB9FD872aF35B6ee442A64A0D5B9832256c4";
+export const baseContractAddress = "0xb0510d245B9b9b077F67f5D4DBc863dD1b761f7B";
 
-export const sepoliaUSDC = "0x036CbD53842c5426634e7929541eC2318f3dCF7e";
+export const baseUSDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
 
 export const abi = [
   {
@@ -866,6 +866,6 @@ export const USDCABI = [
 ];
 
 export const publicClient = createPublicClient({
-  chain: baseSepolia,
+  chain: base,
   transport: http(),
 });

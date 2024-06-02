@@ -1,8 +1,8 @@
-import { abi, baseSepoliaAddress } from "@/constants";
+import { abi, baseContractAddress } from "@/constants";
 import { TransactionTargetResponse, getFrameMessage } from "frames.js";
 import { NextRequest, NextResponse } from "next/server";
 import { Abi, encodeFunctionData, parseUnits } from "viem";
-import { baseSepolia } from "viem/chains";
+import { base } from "viem/chains";
 
 export async function POST(
   req: NextRequest
@@ -34,11 +34,11 @@ export async function POST(
 
   if (type === "eth") {
     return NextResponse.json({
-      chainId: `eip155:${baseSepolia.id}`,
+      chainId: `eip155:${base.id}`,
       method: "eth_sendTransaction",
       params: {
         abi: abi as Abi,
-        to: baseSepoliaAddress as `0x${string}`,
+        to: baseContractAddress as `0x${string}`,
         data: calldata,
         value: amt.toString(),
       },
@@ -46,11 +46,11 @@ export async function POST(
   }
 
   return NextResponse.json({
-    chainId: `eip155:${baseSepolia.id}`,
+    chainId: `eip155:${base.id}`,
     method: "eth_sendTransaction",
     params: {
       abi: abi as Abi,
-      to: baseSepoliaAddress as `0x${string}`,
+      to: baseContractAddress as `0x${string}`,
       data: calldata,
     },
   });

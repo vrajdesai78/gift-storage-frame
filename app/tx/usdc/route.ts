@@ -1,8 +1,8 @@
-import { USDCABI, baseSepoliaAddress, sepoliaUSDC } from "@/constants";
+import { USDCABI, baseContractAddress, baseUSDC } from "@/constants";
 import { TransactionTargetResponse, getFrameMessage } from "frames.js";
 import { NextRequest, NextResponse } from "next/server";
 import { Abi, encodeFunctionData, parseUnits } from "viem";
-import { baseSepolia } from "viem/chains";
+import { base } from "viem/chains";
 
 export async function POST(
   req: NextRequest
@@ -20,15 +20,15 @@ export async function POST(
   const calldata = encodeFunctionData({
     abi: USDCABI,
     functionName: "approve",
-    args: [baseSepoliaAddress, amt],
+    args: [baseContractAddress, amt],
   });
 
   return NextResponse.json({
-    chainId: `eip155:${baseSepolia.id}`,
+    chainId: `eip155:${base.id}`,
     method: "eth_sendTransaction",
     params: {
       abi: USDCABI as Abi,
-      to: sepoliaUSDC as `0x${string}`,
+      to: baseUSDC as `0x${string}`,
       data: calldata,
     },
   });
